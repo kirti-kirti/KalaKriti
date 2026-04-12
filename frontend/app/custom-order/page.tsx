@@ -83,17 +83,34 @@ export default function CustomOrderPage() {
 
         <div className="p-8 lg:p-12">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Cloth Type</label>
-              <select 
-                value={formData.clothType}
-                onChange={(e) => setFormData(p => ({ ...p, clothType: e.target.value }))}
-                className="w-full px-4 py-3 bg-muted rounded-xl border-none text-sm"
-              >
-                <option>T-Shirt</option>
-                <option>Kurti</option>
-                <option>Jeans</option>
-              </select>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Cloth Type</label>
+                <select 
+                  value={formData.clothType}
+                  onChange={(e) => setFormData(p => ({ ...p, clothType: e.target.value }))}
+                  className="w-full px-4 py-3 bg-muted rounded-xl border-none text-sm"
+                >
+                  <option>T-Shirt</option>
+                  <option>Kurti</option>
+                  <option>Jeans</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Size</label>
+                <select 
+                  value={formData.size}
+                  onChange={(e) => setFormData(p => ({ ...p, size: e.target.value }))}
+                  className="w-full px-4 py-3 bg-muted rounded-xl border-none text-sm"
+                >
+                  <option>XS</option>
+                  <option>S</option>
+                  <option>M</option>
+                  <option>L</option>
+                  <option>XL</option>
+                  <option>XXL</option>
+                </select>
+              </div>
             </div>
             
             <textarea 
