@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ShoppingCart, Heart, User, Search, Menu, LayoutDashboard } from "lucide-react";
 import { useUser } from "@/hooks/useUser";
 import { useCart } from "@/hooks/useCart";
+import { ProfileDropdown } from "./ProfileDropdown";
 
 export function Navbar() {
   const { user, isAdmin, isAuthenticated } = useUser();
@@ -46,9 +47,13 @@ export function Navbar() {
               </span>
             )}
           </Link>
-          <Link href={isAuthenticated ? "/dashboard" : "/login"} className="p-2 text-foreground/70 hover:text-foreground transition-colors">
-            <User className="w-5 h-5" />
-          </Link>
+          {isAuthenticated ? (
+            <ProfileDropdown />
+          ) : (
+            <Link href="/login" className="p-2 text-foreground/70 hover:text-foreground transition-colors relative" title="Login">
+              <User className="w-5 h-5" />
+            </Link>
+          )}
         </div>
       </div>
     </nav>

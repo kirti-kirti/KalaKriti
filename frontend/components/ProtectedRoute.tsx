@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 import { toast } from "sonner";
@@ -14,7 +14,7 @@ export function ProtectedRoute({ children, adminOnly = false }: ProtectedRoutePr
   const { isAuthenticated, isAdmin, isLoading } = useUser();
   const router = useRouter();
   const pathname = usePathname();
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const isAuthorized = isAuthenticated && !(adminOnly && !isAdmin);
 
   useEffect(() => {
     if (isLoading) return;
@@ -30,8 +30,6 @@ export function ProtectedRoute({ children, adminOnly = false }: ProtectedRoutePr
       router.push("/dashboard");
       return;
     }
-
-    setIsAuthorized(true);
   }, [isAuthenticated, isAdmin, isLoading, router, pathname, adminOnly]);
 
   if (isLoading || !isAuthorized) {
