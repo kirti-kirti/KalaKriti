@@ -7,6 +7,7 @@ import { Upload, Camera, Send } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 import { useMutation } from "@tanstack/react-query";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export default function CustomOrderPage() {
   const { user } = useUser();
@@ -55,6 +56,7 @@ export default function CustomOrderPage() {
   };
 
   return (
+    <ProtectedRoute>
     <div className="container mx-auto px-4 py-12 flex-1 max-w-4xl">
       <div className="mb-12 text-center">
         <h1 className="text-4xl font-bold tracking-tighter mb-4">Design Your Own</h1>
@@ -133,5 +135,6 @@ export default function CustomOrderPage() {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }

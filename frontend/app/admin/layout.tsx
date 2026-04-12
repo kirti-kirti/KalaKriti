@@ -2,24 +2,17 @@
 
 import { useUser } from "@/hooks/useUser";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+
 import Link from "next/link";
 import { LayoutDashboard, ShoppingBag, Users, Settings, LogOut } from "lucide-react";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const { user, isLoading, isAdmin, logout } = useUser();
+  const { logout } = useUser();
   const router = useRouter();
 
-  useEffect(() => {
-    if (!isLoading && (!user || !isAdmin)) {
-      router.push("/login");
-    }
-  }, [user, isLoading, isAdmin, router]);
-
-  if (isLoading) return <div className="p-12 text-center">Verifying credentials...</div>;
-  if (!user || !isAdmin) return null;
-
   return (
+    <ProtectedRoute adminOnly>
     <div className="flex min-h-screen bg-muted/20">
       {/* Sidebar */}
       <aside className="w-64 bg-card border-r border-border hidden lg:flex flex-col">
@@ -59,5 +52,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {children}
       </main>
     </div>
+    </ProtectedRoute>
   );
 }

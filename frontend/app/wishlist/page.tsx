@@ -6,6 +6,7 @@ import { api } from "@/services/api";
 import { toast } from "sonner";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { HeartOff } from "lucide-react";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export default function WishlistPage() {
   const { user } = useUser();
@@ -26,16 +27,9 @@ export default function WishlistPage() {
     onError: () => toast.error("Failed to remove from wishlist"),
   });
 
-  if (!user) {
-    return (
-      <div className="container mx-auto px-4 py-24 text-center">
-        <h1 className="text-3xl font-bold tracking-tighter mb-4">Your Wishlist</h1>
-        <p className="text-muted-foreground">Please sign in to view your wishlist.</p>
-      </div>
-    );
-  }
 
   return (
+    <ProtectedRoute>
     <div className="container mx-auto px-4 py-12 flex-1">
       <div className="mb-12 text-center md:text-left">
         <h1 className="text-4xl font-bold tracking-tighter mb-4">My Wishlist</h1>
@@ -73,5 +67,6 @@ export default function WishlistPage() {
         </div>
       )}
     </div>
+    </ProtectedRoute>
   );
 }

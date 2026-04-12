@@ -26,7 +26,9 @@ export async function apiRequest<T>(
 
   if (response.status === 401 && typeof window !== "undefined") {
     localStorage.removeItem("token");
-    // Optional: window.location.href = "/login";
+    if (window.location.pathname !== "/login") {
+      window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+    }
   }
 
   const result = await response.json();

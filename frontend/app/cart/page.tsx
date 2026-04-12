@@ -4,21 +4,11 @@ import Link from "next/link";
 import { useCart } from "@/hooks/useCart";
 import { ImageFallback } from "@/components/ImageFallback";
 import { Trash2, ArrowRight } from "lucide-react";
-import { useUser } from "@/hooks/useUser";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export default function CartPage() {
   const { cart, isLoading, updateCartItem, removeCartItem } = useCart();
-  const { user } = useUser();
 
-  if (!user) {
-    return (
-      <div className="container mx-auto px-4 py-24 text-center">
-        <h1 className="text-3xl font-bold tracking-tighter mb-4">Your Cart</h1>
-        <p className="text-muted-foreground mb-8">Please sign in to view your cart.</p>
-        <Link href="/login" className="bg-foreground text-background px-8 py-3 rounded-full font-medium inline-block">Sign In</Link>
-      </div>
-    );
-  }
 
   if (isLoading && !cart) {
     return <div className="container mx-auto px-4 py-24 text-center">Loading cart...</div>;
@@ -35,6 +25,7 @@ export default function CartPage() {
   }
 
   return (
+    <ProtectedRoute>
     <div className="container mx-auto px-4 py-12 flex-1">
       <h1 className="text-3xl font-bold tracking-tighter mb-12">Your Cart</h1>
 
@@ -110,5 +101,6 @@ export default function CartPage() {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }

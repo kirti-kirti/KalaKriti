@@ -4,6 +4,7 @@ import { useState, use } from "react";
 import { useCart } from "@/hooks/useCart";
 import { ImageFallback } from "@/components/ImageFallback";
 import { api } from "@/services/api";
+import { useRouter, usePathname } from "next/navigation";
 import { Product } from "@/components/ProductCard";
 import { Heart, Star, ShoppingBag, Truck, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
@@ -16,8 +17,10 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
   const productId = resolvedParams.id;
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
-  const { user } = useUser();
+  const { user, isAuthenticated } = useUser();
   const queryClient = useQueryClient();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const { data: product, isLoading: productLoading } = useQuery({
     queryKey: ["product", productId],
@@ -42,12 +45,18 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
 
   const handleAddToCart = async () => {
     if (!product) return;
+    if (!isAuthenticated) {
+      toast.error("Please login to continue");
+      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+      return;
+    }
     await addToCart(product.id, quantity);
   };
 
   const handleAddToWishlist = () => {
-    if (!user) {
-      toast.error("Please login to add to wishlist");
+    if (!isAuthenticated) {
+      toast.error("Please login to continue");
+      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
       return;
     }
     wishlistMutation.mutate();

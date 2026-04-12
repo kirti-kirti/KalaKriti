@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { api } from "@/services/api";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
+import { useUser } from "@/hooks/useUser";
+import { useEffect, Suspense } from "react";
 
-export default function RegisterPage() {
+function RegisterContent() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -15,6 +17,15 @@ export default function RegisterPage() {
     password: ""
   });
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { isAuthenticated, isLoading } = useUser();
+  const redirectPath = searchParams.get("redirect") || "/dashboard";
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.push(redirectPath);
+    }
+  }, [isAuthenticated, isLoading, router, redirectPath]);
 
   const registerMutation = useMutation({
     mutationFn: (data: any) => api.post("/api/auth/register", data),
@@ -107,5 +118,13 @@ export default function RegisterPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div className="flex-1 flex items-center justify-center p-4">Loading...</div>}>
+      <RegisterContent />
+    </Suspense>
   );
 }

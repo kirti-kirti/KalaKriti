@@ -2,24 +2,33 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
+import { useEffect, Suspense } from "react";
 import { api } from "@/services/api";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 
-export default function LoginPage() {
+function LoginContent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useUser();
+  const { login, isAuthenticated, isLoading } = useUser();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get("redirect") || "/dashboard";
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.push(redirectPath);
+    }
+  }, [isAuthenticated, isLoading, router, redirectPath]);
 
   const loginMutation = useMutation({
     mutationFn: (data: any) => api.post<any>("/api/auth/login", data),
     onSuccess: (data) => {
       login(data.token, data);
       toast.success("Successfully logged in!");
-      router.push("/dashboard");
+      router.push(redirectPath);
     },
     onError: (error: any) => {
       toast.error(error.message || "Invalid credentials");
@@ -80,5 +89,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="flex-1 flex items-center justify-center p-4">Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

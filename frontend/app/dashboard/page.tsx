@@ -5,9 +5,10 @@ import { api } from "@/services/api";
 import { Package, User as UserIcon, MapPin, Phone, History, Clock, LogOut } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export default function Dashboard() {
-  const { user, isLoading: authLoading, logout } = useUser();
+  const { user, logout } = useUser();
   const router = useRouter();
 
   const { data: orders = [], isLoading: ordersLoading } = useQuery({
@@ -27,10 +28,10 @@ export default function Dashboard() {
     router.push("/");
   };
 
-  if (authLoading) return <div className="container mx-auto py-24 text-center">Loading...</div>;
-  if (!user) return <div className="container mx-auto py-24 text-center text-red-500 font-medium">Please login to view dashboard.</div>;
+  if (!user) return null;
 
   return (
+    <ProtectedRoute>
     <div className="container mx-auto px-4 py-12 flex-1">
       <div className="flex flex-col lg:flex-row gap-8 mb-16 items-start lg:items-center justify-between">
         <div>
@@ -186,5 +187,6 @@ export default function Dashboard() {
         </section>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }

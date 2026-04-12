@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CreditCard, Truck, ShieldCheck } from "lucide-react";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function CheckoutPage() {
@@ -40,6 +41,7 @@ export default function CheckoutPage() {
   }
 
   return (
+    <ProtectedRoute>
     <div className="container mx-auto px-4 py-12 flex-1 max-w-5xl">
       <h1 className="text-3xl font-bold tracking-tighter mb-12">Checkout</h1>
 
@@ -114,5 +116,6 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }
