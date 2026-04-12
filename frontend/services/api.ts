@@ -47,13 +47,13 @@ export async function apiRequest<T>(
 // Utility methods
 export const api = {
   get: <T>(endpoint: string, options?: RequestInit) => apiRequest<T>(endpoint, { ...options, method: "GET" }),
-  post: <T>(endpoint: string, body?: any, options?: RequestInit) => 
+  post: <T>(endpoint: string, body?: unknown, options?: RequestInit) => 
     apiRequest<T>(endpoint, { 
       ...options, 
       method: "POST", 
       body: body instanceof FormData ? body : JSON.stringify(body) 
     }),
-  put: <T>(endpoint: string, body?: any, options?: RequestInit) => 
+  put: <T>(endpoint: string, body?: unknown, options?: RequestInit) => 
     apiRequest<T>(endpoint, { 
       ...options, 
       method: "PUT", 
