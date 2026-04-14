@@ -1,7 +1,9 @@
 package com.ecommerce.ecommerce_backend.service;
 
 import com.ecommerce.ecommerce_backend.dto.response.AdminStatsResponse;
+import com.ecommerce.ecommerce_backend.dto.response.CustomOrderResponse;
 import com.ecommerce.ecommerce_backend.dto.response.OrderResponse;
+import com.ecommerce.ecommerce_backend.repository.CustomOrderRepository;
 import com.ecommerce.ecommerce_backend.repository.OrderRepository;
 import com.ecommerce.ecommerce_backend.repository.ProductRepository;
 import com.ecommerce.ecommerce_backend.repository.UserRepository;
@@ -19,6 +21,7 @@ public class AdminService {
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
+    private final CustomOrderRepository customOrderRepository;
 
     public AdminStatsResponse getStats() {
         return new AdminStatsResponse(
@@ -31,5 +34,9 @@ public class AdminService {
 
     public Page<OrderResponse> getAllOrders(Pageable pageable) {
         return orderRepository.findAllByOrderByCreatedAtDesc(pageable).map(OrderResponse::from);
+    }
+
+    public Page<CustomOrderResponse> getAllCustomOrders(Pageable pageable) {
+        return customOrderRepository.findAllByOrderByCreatedAtDesc(pageable).map(CustomOrderResponse::from);
     }
 }

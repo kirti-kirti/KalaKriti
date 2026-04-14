@@ -36,23 +36,23 @@ export default function Home() {
           <div className="absolute inset-0 bg-background/20" />
         </div>
         
-        <div className="relative z-10 text-center px-4 max-w-3xl glass-panel p-12 bg-white/70 backdrop-blur-md rounded-2xl shadow-xl">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-foreground">
-            Wear Your <span className="text-pastel-pink/80 mix-blend-multiply">Aesthetic</span>
+        <div className="relative z-10 text-center px-4 max-w-3xl glass-panel p-12 bg-surface/80 backdrop-blur-[24px] shadow-[var(--shadow-editorial)]">
+          <h1 className="text-5xl md:text-7xl font-display tracking-tight mb-6 text-primary">
+            Wear Your <span className="italic">Aesthetic</span>
           </h1>
-          <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-xl mx-auto font-light">
+          <p className="text-lg md:text-xl text-primary/80 mb-8 max-w-xl mx-auto font-light">
             Premium hand-painted and custom embroidered clothing designed exclusively for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/products" 
-              className="bg-foreground text-background px-8 py-3 rounded-full font-medium transition-transform hover:scale-105"
+              className="bg-gradient-to-r from-primary to-primary-container text-on-primary px-8 py-3 rounded-xl font-medium transition-transform hover:scale-105"
             >
               Shop Collection
             </Link>
             <Link 
               href="/custom-order" 
-              className="bg-background text-foreground border border-foreground/10 px-8 py-3 rounded-full font-medium transition-transform hover:scale-105"
+              className="border border-outline-variant text-secondary px-8 py-3 rounded-xl font-medium transition-transform hover:bg-surface-variant"
             >
               Design Your Own
             </Link>
@@ -61,7 +61,7 @@ export default function Home() {
       </section>
 
       {/* Categories */}
-      <section className="py-24 bg-muted/30">
+      <section className="py-32 bg-surface-container-low">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-end mb-12">
             <h2 className="text-3xl font-bold tracking-tighter">Shop by Category</h2>
@@ -72,7 +72,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {CATEGORIES.map((category, idx) => (
-              <Link href={`/products?category=${encodeURIComponent(category.name)}`} key={idx} className="group relative aspect-square overflow-hidden rounded-xl">
+              <Link href={`/products?category=${encodeURIComponent(category.name)}`} key={idx} className="group relative aspect-square overflow-hidden rounded-lg">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src={category.image} 
@@ -93,11 +93,11 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-24">
+      <section className="py-32 bg-surface">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tighter mb-4">Featured Additions</h2>
-            <p className="text-muted-foreground">The latest pieces from our studio.</p>
+            <h2 className="text-4xl font-display tracking-tight mb-4 text-primary">Featured Additions</h2>
+            <p className="text-outline">The latest pieces from our studio.</p>
           </div>
 
           {isLoading ? (
@@ -125,7 +125,7 @@ export default function Home() {
           <div className="mt-16 text-center">
             <Link 
               href="/products" 
-              className="inline-flex items-center gap-2 border border-border px-8 py-3 rounded-full font-medium hover:bg-muted transition-colors"
+              className="inline-flex items-center gap-2 border border-outline-variant text-secondary px-8 py-3 rounded-xl font-medium hover:bg-surface-container-low transition-colors"
             >
               View Entire Collection
             </Link>

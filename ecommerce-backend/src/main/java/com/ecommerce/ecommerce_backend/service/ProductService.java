@@ -40,6 +40,7 @@ public class ProductService {
                 .category(request.getCategory())
                 .imageUrl(request.getImageUrl())
                 .stock(request.getStock())
+                .tags(request.getTags())
                 .build();
         log.info("Product created: {}", request.getName());
         return ProductResponse.from(productRepository.save(product));
@@ -53,6 +54,7 @@ public class ProductService {
         product.setCategory(request.getCategory());
         product.setImageUrl(request.getImageUrl());
         product.setStock(request.getStock());
+        product.setTags(request.getTags());
         return ProductResponse.from(productRepository.save(product));
     }
 

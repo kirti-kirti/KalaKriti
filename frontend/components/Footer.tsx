@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background py-12">
+    <footer className="bg-surface-container-low py-24">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h3 className="text-xl font-bold tracking-tighter mb-4">
@@ -33,15 +33,15 @@ export function Footer() {
             <input 
               type="email" 
               placeholder="Your email" 
-              className="flex-1 bg-muted px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-foreground rounded-none"
+              className="flex-1 border-b border-outline bg-transparent px-3 py-2 text-sm focus:outline-none focus:border-primary rounded-none transition-colors"
             />
-            <button className="bg-foreground text-background px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90">
+            <button className="bg-gradient-to-r from-primary to-primary-container text-on-primary px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90 rounded-xl">
               Subscribe
             </button>
           </div>
         </div>
       </div>
-      <div className="container mx-auto px-4 mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+      <div className="container mx-auto px-4 mt-24 pt-8 text-center text-sm text-muted-foreground">
         © {new Date().getFullYear()} Studio Aestheta. All rights reserved.
       </div>
     </footer>

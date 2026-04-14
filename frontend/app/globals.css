@@ -1,42 +1,88 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111111;
-  --pastel-pink: #fdf2f8;
-  --pastel-blue: #f0f9ff;
-  --pastel-green: #f0fdf4;
-  --pastel-yellow: #fefce8;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
-  --border: #e5e7eb;
+  /* The Digital Loom Palette */
+  --surface: #fef8f5;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f8efe8;
+  --surface-container: #f2e6dc;
+  --surface-container-highest: #ebdcd0;
+  --surface-variant: #f2e6dc;
+  
+  --primary: #8f4e00;          /* Saffron */
+  --on-primary: #ffffff;
+  --primary-container: #ff9933;
+  
+  --secondary: #4b53bc;        /* Indigo */
+  --on-secondary: #ffffff;
+  
+  --tertiary: #795900;         /* Marigold */
+  --tertiary-container: #e2a900;
+  
+  --on-surface: #1d1b1a;
+  --on-surface-variant: #1d1b1a;
+  
+  --outline: #bcaca0;
+  --outline-variant: rgba(219, 194, 176, 0.20); /* #dbc2b0 at 20% opacity for Ghost Border */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-pastel-pink: var(--pastel-pink);
-  --color-pastel-blue: var(--pastel-blue);
-  --color-pastel-green: var(--pastel-green);
-  --color-pastel-yellow: var(--pastel-yellow);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--surface);
+  --color-foreground: var(--on-surface);
+  
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  
+  --color-surface: var(--surface);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+  
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  
+  --color-border: var(--outline-variant);
+  --color-muted: var(--surface-container-highest);
+  --color-muted-foreground: var(--outline);
+  
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-noto-serif);
+  
+  /* Indigo-Tinted Shadow */
+  --shadow-editorial: 0px 10px 30px rgba(75, 83, 188, 0.06); 
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #fafafa;
-    --pastel-pink: #4a044e; /* Dark variations of pastels */
-    --pastel-blue: #172554;
-    --pastel-green: #052e16;
-    --pastel-yellow: #422006;
-    --muted: #262626;
-    --muted-foreground: #a3a3a3;
-    --border: #262626;
+    /* Muted inversions for dark mode to preserve vibrant accents */
+    --surface: #12100e;
+    --surface-container-lowest: #000000;
+    --surface-container-low: #1c1815;
+    --surface-container: #26211c;
+    --surface-container-highest: #332d26;
+    --surface-variant: #332d26;
+    
+    --primary: #ffbd66;        /* Lighter saffron for text legibility */
+    --on-primary: #472600;
+    --primary-container: #8f4e00;
+    
+    --secondary: #a4a9ff;      /* Lighter indigo */
+    --on-secondary: #0b1574;
+    
+    --on-surface: #e9e3df;
+    --on-surface-variant: #e9e3df;
+    --outline: #94867c;
+    --outline-variant: rgba(148, 134, 124, 0.20);
   }
 }
 

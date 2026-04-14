@@ -13,6 +13,7 @@ public class ProductResponse {
     private String category;
     private String imageUrl;
     private Integer stock;
+    private String tags;
 
     public static ProductResponse from(Product p) {
         ProductResponse r = new ProductResponse();
@@ -23,6 +24,7 @@ public class ProductResponse {
         r.category = p.getCategory();
         r.imageUrl = p.getImageUrl();
         r.stock = p.getStock();
+        r.tags = p.getTags();
         return r;
     }
 }

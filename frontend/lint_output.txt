@@ -1,0 +1,70 @@
+
+/Users/apple/Desktop/my_app/frontend/app/admin/orders/page.tsx
+  13:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  61:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Desktop/my_app/frontend/app/admin/page.tsx
+  13:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  23:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  68:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Desktop/my_app/frontend/app/cart/page.tsx
+  31:71  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/apple/Desktop/my_app/frontend/app/checkout/page.tsx
+  24:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Desktop/my_app/frontend/app/custom-order/page.tsx
+   6:18  warning  'Camera' is defined but never used        @typescript-eslint/no-unused-vars
+  28:22  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Desktop/my_app/frontend/app/dashboard/page.tsx
+   15:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   21:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  129:39  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  164:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Desktop/my_app/frontend/app/login/page.tsx
+  18:24  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  18:41  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  24:22  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  79:14  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/apple/Desktop/my_app/frontend/app/page.tsx
+  18:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Desktop/my_app/frontend/app/products/[id]/page.tsx
+  11:10  warning  'ReviewCard' is defined but never used               @typescript-eslint/no-unused-vars
+  20:9   warning  'queryClient' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  27:42  warning  'reviewsLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  29:28  error    Unexpected any. Specify a different type             @typescript-eslint/no-explicit-any
+
+/Users/apple/Desktop/my_app/frontend/app/products/page.tsx
+  17:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Desktop/my_app/frontend/app/register/page.tsx
+  20:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  25:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/apple/Desktop/my_app/frontend/components/ImageFallback.tsx
+  4:8  warning  'Image' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Desktop/my_app/frontend/components/Modal.tsx
+  15:9  warning  'modalRef' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Desktop/my_app/frontend/components/Navbar.tsx
+  9:11  warning  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Desktop/my_app/frontend/components/ReviewCard.tsx
+  36:9   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  36:26  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/apple/Desktop/my_app/frontend/hooks/useUser.ts
+  24:16  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/apple/Desktop/my_app/frontend/services/api.ts
+  50:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  56:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 33 problems (25 errors, 8 warnings)
+

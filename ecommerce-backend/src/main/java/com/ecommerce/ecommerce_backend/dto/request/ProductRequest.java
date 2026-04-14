@@ -24,4 +24,6 @@ public class ProductRequest {
     @NotNull
     @Min(0)
     private Integer stock;
+
+    private String tags;
 }

@@ -18,12 +18,20 @@ public class SwaggerConfig {
     public OpenAPI openAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("E-Commerce API")
-                        .description("REST API for E-Commerce application — User, Product, Cart, Order, Custom Order modules")
+                        .title("Fashion E-Commerce API")
+                        .description("""
+                                REST API for a handmade & custom fashion e-commerce platform.
+                                
+                                Features: Hand-painted T-shirts, Embroidered Kurtis, Custom Jeans, and User-designed clothing.
+                                
+                                Modules: Auth · Users · Products · Cart · Orders · Custom Orders · Reviews · Wishlist · Admin
+                                
+                                🔐 To use secured endpoints: Login via /api/auth/login → copy token → click Authorize 🔒
+                                """)
                         .version("1.0.0")
                         .contact(new Contact()
-                                .name("E-Commerce Team")
-                                .email("support@ecommerce.com")))
+                                .name("Fashion Store Team")
+                                .email("support@fashionstore.com")))
                 .addSecurityItem(new SecurityRequirement().addList(BEARER_SCHEME))
                 .components(new Components()
                         .addSecuritySchemes(BEARER_SCHEME, new SecurityScheme()
@@ -31,6 +39,6 @@ public class SwaggerConfig {
                                 .type(SecurityScheme.Type.HTTP)
                                 .scheme("bearer")
                                 .bearerFormat("JWT")
-                                .description("Paste your JWT token here. Obtain it from /api/auth/login")));
+                                .description("Enter JWT token obtained from POST /api/auth/login")));
     }
 }

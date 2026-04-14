@@ -37,5 +37,5 @@ public class CustomOrder {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public enum Status { PENDING, APPROVED, IN_PROGRESS, COMPLETED, CANCELLED }
+    public enum Status { PENDING, APPROVED, IN_PROGRESS, COMPLETED, REJECTED, CANCELLED }
 }

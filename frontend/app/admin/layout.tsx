@@ -6,10 +6,23 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { LayoutDashboard, ShoppingBag, Users, Settings, LogOut } from "lucide-react";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { LogoutModal } from "@/components/LogoutModal";
+import { useState } from "react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { logout } = useUser();
   const router = useRouter();
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
+  const requestLogout = () => {
+    setIsLogoutModalOpen(true);
+  };
+
+  const confirmLogout = () => {
+    logout();
+    setIsLogoutModalOpen(false);
+    router.push("/");
+  };
 
   return (
     <ProtectedRoute adminOnly>
@@ -39,7 +52,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         <div className="p-4 border-t border-border">
           <button 
-            onClick={() => { logout(); router.push("/"); }}
+            onClick={requestLogout}
             className="flex items-center gap-3 w-full px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl transition-colors font-medium"
           >
             <LogOut className="w-4 h-4" /> Logout
@@ -51,6 +64,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <main className="flex-1 p-8 lg:p-12 overflow-y-auto">
         {children}
       </main>
+      
+      <LogoutModal 
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={confirmLogout}
+      />
     </div>
     </ProtectedRoute>
   );

@@ -6,10 +6,12 @@ import { User as UserIcon, Package, Heart, LogOut, ChevronDown } from "lucide-re
 import { useUser } from "@/hooks/useUser";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { LogoutModal } from "./LogoutModal";
 
 export function ProfileDropdown() {
   const { user, logout } = useUser();
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -23,9 +25,14 @@ export function ProfileDropdown() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLogout = () => {
-    logout();
+  const requestLogout = () => {
     setIsOpen(false);
+    setIsLogoutModalOpen(true);
+  };
+
+  const confirmLogout = () => {
+    logout();
+    setIsLogoutModalOpen(false);
     router.push("/");
   };
 
@@ -90,7 +97,7 @@ export function ProfileDropdown() {
             </div>
             <div className="p-2 border-t border-border">
               <button 
-                onClick={handleLogout}
+                onClick={requestLogout}
                 className="flex items-center w-full gap-3 px-3 py-2.5 text-sm text-red-500 rounded-xl hover:bg-red-50 transition-colors"
               >
                 <LogOut className="w-4 h-4" />
@@ -100,6 +107,12 @@ export function ProfileDropdown() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <LogoutModal 
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={confirmLogout}
+      />
     </div>
   );
 }

@@ -30,4 +30,7 @@ public class Product {
 
     @Column(nullable = false)
     private Integer stock;
+
+    @Column(columnDefinition = "TEXT")
+    private String tags;
 }

@@ -1,4 +1,13 @@
-export const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+export let BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+
+if (typeof window !== "undefined" && !process.env.NEXT_PUBLIC_API_URL) {
+  // If we are browsing from a mobile device (192.168.x.x), 
+  // ensure fetch calls go to that IP's 8080 port instead of the phone's "localhost"
+  const hostname = window.location.hostname;
+  if (hostname !== "localhost") {
+    BASE_URL = `http://${hostname}:8080`;
+  }
+}
 
 export interface ApiResponse<T> {
   message: string;

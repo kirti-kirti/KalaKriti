@@ -11,7 +11,7 @@ export function Navbar() {
   const { itemCount } = useCart();
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full bg-surface/80 backdrop-blur-[24px]">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <button className="md:hidden p-2 text-foreground/70 hover:text-foreground">
@@ -33,12 +33,12 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="hidden sm:block p-2 text-foreground/70 hover:text-foreground transition-colors">
+          {/* <button className="hidden sm:block p-2 text-foreground/70 hover:text-foreground transition-colors">
             <Search className="w-5 h-5" />
-          </button>
-          <Link href="/wishlist" className="p-2 text-foreground/70 hover:text-foreground transition-colors relative">
+          </button> */}
+          {/* <Link href="/wishlist" className="p-2 text-foreground/70 hover:text-foreground transition-colors relative">
             <Heart className="w-5 h-5" />
-          </Link>
+          </Link> */}
           <Link href="/cart" className="p-2 text-foreground/70 hover:text-foreground transition-colors relative">
             <ShoppingCart className="w-5 h-5" />
             {itemCount > 0 && (

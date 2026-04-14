@@ -1,19 +1,30 @@
 package com.ecommerce.ecommerce_backend.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
 
-@Data
-@AllArgsConstructor
+@Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
-    private String message;
-    private T data;
+    private final boolean success;
+    private final String message;
+    private final T data;
+
+    private ApiResponse(boolean success, String message, T data) {
+        this.success = success;
+        this.message = message;
+        this.data = data;
+    }
 
     public static <T> ApiResponse<T> success(String message, T data) {
-        return new ApiResponse<>(message, data);
+        return new ApiResponse<>(true, message, data);
     }
 
     public static ApiResponse<Void> success(String message) {
-        return new ApiResponse<>(message, null);
+        return new ApiResponse<>(true, message, null);
+    }
+
+    public static <T> ApiResponse<T> error(String message) {
+        return new ApiResponse<>(false, message, null);
     }
 }
